@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        background-color: lightblue;
+    }
+
+    h2 {
+        color: white;
+        text-align: center;
+    }
+
+    table {
+        font-family: verdana;
+        font-size: 40px;
+    }
+
+    input {
+        background-color: yellow;
+    }
+</style>
+
+<body>
+    <h2 align="center">Welcome to my Web. <br> Who are you?</h2>
+    <form action="hello.php" method="post">
+        <table align="center">
+            <tr>
+                <td>Your Last Name</td>
+                <td><input type="text" name="lname" /> </td>
+            </tr>
+            <tr>
+                <td>Your First Name</td>
+                <td><input type="text" name="fname" /> </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="2"><input type="submit" name="enter" value="enter" /> </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
