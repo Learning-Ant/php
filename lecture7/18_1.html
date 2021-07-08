@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Communication Example</title>
+</head>
+
+<body style='text-align:center'>
+    <h1>Loading a web page into a DIV</h1>
+    <div id="info">This sentence will be replaced</div>
+
+    <script>
+        // let XHR = new XMLHttpRequest();
+
+        // XHR.open("POST", "urlpost.php", true);
+        // // XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded",
+        // //     "Content-length", "url=news.com".length,
+        // //     "Connection", "close")
+        // XHR.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // XHR.setRequestHeader("Content-length", "url=news.com".length);
+        // XHR.setRequestHeader("Connection", "close");
+        // XHR.send("url=news.com");
+
+        // XHR.onreadystatechange = function () {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         document.getElementById('info').innerHTML = this.responseText;
+        //     }
+        // }
+
+        let params = "url=news.com";
+        let request = new asyncRequest();
+
+        request.open("POST", "urlpost.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.setRequestHeader("Content-length", params.length);
+        request.setRequestHeader("Connection", "close");
+
+        request.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    if (this.responseText != null) {
+                        document.getElementById('info').innerHTML = this.responseText
+                    }
+                    else alert("Communication error: No data received");
+                } else alert("Communication error:" + this.statusTexT);
+            }
+        }
+        request.send(params);
+
+        function asyncRequest() {
+            let request = false;
+            try {  // Non-IE browser? Yes
+                request = new XMLHttpRequest();
+            } catch (e1) {
+                try {  // IE 6+? Yes
+                    request = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e2) {
+                    try { // IE S? Yes
+                        request = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e3) { // There is no asynchronous support
+                        request = false;
+                    }
+                }
+            }
+            return request;
+        }
+    </script>
+</body>
+
+</html>
