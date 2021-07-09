@@ -35,7 +35,6 @@
             return s.substr(0, s.length - 1);
         }
     }
-
     // 16-4
     document.write("<h2>Example 16-4</h2>");
     words = fixNames2("the", "DALLAS", "CowBoys");
@@ -51,7 +50,6 @@
             return s;
         }
     }
-
     // 16-5
     document.write("<h2>Example 16-5</h2>");
     u1 = new User('a1', 'b1', 'c1');
@@ -68,7 +66,6 @@
             document.write("Password : " + this.password + "<br>");
         }
     }
-
     // 16-6
     document.write("<h2>Example 16-6</h2>");
     u2 = new User2('a2', 'b2', 'c2');
@@ -148,7 +145,6 @@
         }
         document.write("<br>");
     }
-
     document.write("</pre>");
 
     // 16-11
