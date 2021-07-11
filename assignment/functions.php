@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$date = 'publications';
+$data = 'robinsnest';
 $user = 'jspark';
 $pass = '1111';
 $chars = 'utf8mb4';
@@ -44,15 +44,14 @@ function sanitizeString($var)
     global $pdo;
     $var = strip_tags($var);
     $var = htmlentities($var);
-    if (get_magic_quotes_gpc()) {
-        $var = stripslashes($var);
-    }
-    $result = $pdo->quoto($var);
+    $var = stripslashes($var);
+    $result = $pdo->quote($var);
     return str_replace("'", "", $result);
 }
 
 function showProfile($user)
 {
+    global $pdo;
     if (file_exists("$user.jpg")) {
         echo "<img src='$user.jpg' style='float:left;'>";
     }

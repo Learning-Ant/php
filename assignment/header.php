@@ -2,8 +2,6 @@
 session_start();
 
 // <link rel='stylesheet' href='jquery.mobile-1.4.5.min.css'>
-// <link rel='stylesheet' href='styles.css'>
-// <script src='javascript.js'></script>
 // <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 // 위 버전은 jquery 1.9까지만 지원한다
 // <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -16,6 +14,8 @@ echo <<<_INIT
         <meta charset='utf-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel='stylesheet' href='styles.css'>
+        <script src='javascript.js'></script>
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
