@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #pad {
+            background: #def;
+            border: 1px solid #aaa;
+        }
+
+        #ball {
+            position: relative;
+        }
+
+        #box {
+            width: 640px;
+            height: 480px;
+            background: green;
+            border: 1px slide #444;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Example 22-6</h3>
+    <h2>Click and double click the buttons</h2>
+    <button class='myclass'>Button 1</button>
+    <button class='myclass'>Button 2</button>
+    <button class='myclass'>Button 3</button>
+    <button class='myclass'>Button 4</button>
+    <button class='myclass'>Button 5</button>
+    <script>
+        // Example 22-6
+        $('.myclass').click(function () {
+            $(this).slideUp()
+        })
+        $('.myclass').dblclick(function () {
+            $(this).hide();
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-7</h3>
+    <h2>Press some keys</h2>
+    <div id='result'></div>
+    <script>
+        // Example 22-7
+        $(document).keypress(function (event) {
+            key = String.fromCharCode(event.which);
+
+            if (key >= 'a' && key <= 'z' ||
+                key >= 'A' && key <= 'Z' ||
+                key >= '0' && key <= '9') {
+                $('#result').html('You pressed: ' + key);
+                event.preventDefault();
+            }
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-8</h3>
+    <canvas id='pad' width='480' height='320'></canvas>
+    <script>
+        // Example 22-8
+        canvas = $('#pad')[0];
+        context = canvas.getContext("2d");
+        pendown = false;
+
+        $('#pad').mousemove(function (event) {
+            var xpos = event.pageX - canvas.offsetLeft;
+            var ypos = event.pageY - canvas.offsetTop;
+
+            if (pendown) {
+                context.lineTo(xpos, ypos)
+            } else {
+                context.moveTo(xpos, ypos);
+            }
+
+            context.stroke();
+        });
+
+        $('#pad').mousedown(function () {
+            pendown = true;
+        })
+        $('#pad').mouseup(function () {
+            pendown = false;
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-9</h3>
+    <h2 id='test'>Pass the mouse over me</h2>
+    <script>
+        // Example 22-9
+        $('#test').mouseenter(function () {
+            $(this).html('Hey, stop tickling!');
+        })
+        $('#test').mouseleave(function () {
+            $(this).html('Where did you go?');
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-10</h3>
+    <form id='form'>
+        First name : <input id='fname' type='text' name='fname' /><br>
+        Last name : <input id='lname' type='text' name='lname' /><br>
+        <input type='submit' />
+    </form>
+    <script>
+        // Example 22-10
+        $('#form').submit(function () {
+            if ($('#fname').val() == '' ||
+                $('#lname').val() == '') {
+                alert('Please enter both names');
+                return false;
+            }
+        })
+
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-11</h3>
+    <button id='hide'>Hide</button>
+    <button id='show'>Show</button>
+    <p id='text'>Click the Hide and Show buttons</p>
+    <script>
+        // Example 22-11
+        $('#hide').click(function () {
+            $('#text').hide('slow', 'linear');
+        })
+        $('#show').click(function () {
+            $('#text').show('slow', 'linear');
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-12</h3>
+    <button id='toggle'>Toggle</button>
+    <p id='text2'>Click the Toggle button</p>
+    <script>
+        // Example 22-12
+        $('#toggle').click(function () {
+            $('#text2').toggle('slow', 'linear');
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-13</h3>
+    <button id='fadeout'>fadeOut</button>
+    <button id='fadein'>fadeIn</button>
+    <button id='fadetoggle'>fadeToggle</button>
+    <button id='fadeto'>fadeTo</button>
+    <p id='text3'>Click the buttons above</p>
+    <script>
+        // Example 22-13
+        $('#fadeout').click(function () {
+            $('#text3').fadeOut('slow');
+        })
+        $('#fadein').click(function () {
+            $('#text3').fadeIn('slow');
+        })
+        $('#fadetoggle').click(function () {
+            $('#text3').fadeToggle('slow');
+        })
+        $('#fadeto').click(function () {
+            $('#text3').fadeTo('slow', 0.5);
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-14</h3>
+    <button id='slideup'>slideUp</button>
+    <button id='slidedown'>slideDown</button>
+    <button id='slidetoggle'>slideToggle</button>
+    <div id='para' style='background:#def'>
+        <h2>From A Tale of Two Cities - By Charles Dickens</h2>
+        <p>
+            It was the best of times, it was the worst of times, it was the age of
+            wisdom, it was the age of foolishness, it was the epoch of belief, it was
+            the epoch of incredulity, it was the season of Light, it was the season of
+            Darkness, it was the spring of hope, it was the winter of despair, we had
+            everything before us, we had nothing before us, we were all going direct to
+            Heaven, we were all going direct the other way - in short, the period was so
+            far like the present period, that some of its noisiest authorities insisted
+            on its being received, for good or for evil, in the superlative degree of
+            comparison only
+        </p>
+    </div>
+    <script>
+        $('#slideup').click(function () {
+            $('#para').slideUp('slow');
+        })
+        $('#slidedown').click(function () {
+            $('#para').slideDown('slow');
+        })
+        $('#slidetoggle').click(function () {
+            $('#para').slideToggle('slow');
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-15</h3>
+    <div id='box'>
+        <img id='ball' src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/22/ball.png'>
+    </div>
+    <script>
+        bounce();
+
+        function bounce() {
+            $('#ball')
+                .animate({ left: '270px', top: '380px' }, 'slow', 'linear')
+                .animate({ left: '540px', top: '190px' }, 'slow', 'linear')
+                .animate({ left: '270px', top: '0px' }, 'slow', 'linear')
+                .animate({ left: '0px', top: '190px' }, 'slow', 'linear')
+        }
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-16</h3>
+    <h2>Example Document</h2>
+    <p id='intro'>This is an example document</p>
+    <script>
+        alert($('#intro').html())
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-17</h3>
+    <h2>Example Document</h2>
+    <p><a id='link' href='http://google.com' title='Google'>Visit Google</a></p>
+    <script>
+        $('#link').text('Visit Naver');
+        $('#link').attr({ href: 'http://naver.com', title: 'Naver!' });
+        alert('The new HTML is : \n' + $('p').html())
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-18</h3>
+    <h2>Example Document</h2>
+    <a href='http://google.com' title='Google'>Visit Google</a>
+    <code>
+        This is a code section
+    </code>
+    <p>
+        <button id='a'>Remove the image</button>
+        <button id='b'>Empty the quote</button>
+    </p>
+    <img id='ball2' src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/22/ball.png'>
+    <blockquote id='quote' style='border:1px dotted #444; height:20px;'>
+        test
+    </blockquote>
+    <script>
+        $('a').prepend('Link: ');
+        $("[href^='http']").append("<img src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/22/link.png>");
+        $('code').before('<hr>').after('<hr>');
+        $('#a').click(function () {
+            $('#ball2').remove();
+        });
+        $('#b').click(function () {
+            $('#quote').empty();
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-19</h3>
+    <p>
+        <button id='getdoc'>Get document width</button>
+        <button id='getwin'>Get window width</button>
+        <button id='getdiv'>Get div width</button>
+        <button id='setdiv'>Get div width to 150 pixels</button>
+    </p>
+    <div id='result2' style='width:300px; height:50px; background:#def;'></div>
+    <script>
+        $('#getdoc').click(function () {
+            $('#result2').html('Document width: ' + $(document).width());
+        })
+        $('#getwin').click(function () {
+            $('#result2').html('Window width: ' + $(window).width());
+        })
+        $('#getdiv').click(function () {
+            $('#result2').html('Div width: ' + $('#result2').width());
+        })
+        $('#setdiv').click(function () {
+            $('#result2').width(150);
+            $('#result2').html('Div width: ' + $('#result2').width());
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-20</h3>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <ul class='memo'>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>
+    <script>
+        $('li').parent().css('font-weight', 'bold');
+        $('li').parent('.memo').css('list-style-type', 'circle');
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-21</h3>
+    <div>
+        <div>
+            <section>
+                <blockquote>
+                    <ul>
+                        <li>Item 1</li>
+                        <li id='elem'>Item 2</li>
+                        <li>Item 3</li>
+                    </ul>
+                </blockquote>
+            </section>
+        </div>
+        <div>
+            <section>
+                <blockquote>
+                    <ul>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                    </ul>
+                </blockquote>
+            </section>
+        </div>
+    </div>
+    <script>
+        $('#elem').parents('div').css('background', 'yellow');
+        $('#elem').parentsUntil('div').css('text-decoration', 'underline');
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-22</h3>
+    <ul>
+        <li class='new'>Item 1</li>
+        <li id='two' class='new'>Item 2</li>
+        <li>Item 3</li>
+        <li class='new'>Item 4</li>
+        <li class='new'>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+    </ul>
+    <script>
+        $('#two').siblings('.new').css('font-weight', 'bold');
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-23</h3>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li id='new'>Item 3</li>
+        <li>Item 4
+            <ol type='a'>
+                <li>Item 4a</li>
+                <li>Item 4b</li>
+            </ol>
+        </li>
+        <li>Item 5</li>
+    </ul>
+    <script>
+        $('ul>li').first().css('text-decoration', 'underline');
+        $('ul>li').last().css('font-style', 'italic');
+        $('ul>li').eq(1).css('font-weight', 'bold');
+        $('ul>li').filter(':even').css('background', 'cyan');
+        $('ul>li').not('#new').css('color', 'blue');
+        $('ul>li').has('ol').css('text-decoration', 'line-through');
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-24</h3>
+    <div><button>Button in a div</button></div>
+    <div><button>Button in a div</button></div>
+    <span><button>Button in a span</button></span>
+    <div><button>Button in a div</button></div>
+    <span><button>Button in a span</button></span>
+    <p id='info'></p>
+    <script>
+        $('button').click(function () {
+            var elem = '';
+
+            if ($(this).parent().is('div')) {
+                elem = 'div';
+            } else {
+                elem = 'span';
+            }
+            $('#info').html('You clicked a ' + elem);
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-25</h3>
+    <div id='info2'></div>
+    <script>
+        pets = {
+            Scratchy: 'Guinea Pig',
+            Squeeky: 'Guinea Pig',
+            Fluffy: 'Rabbit',
+            Thumper: 'Rabbit',
+            Snoopy: 'Dog',
+            Tiddles: 'Cat;'
+        };
+
+        guineapigs = [];
+
+        $.each(pets, function (name, type) {
+            if (type == 'Guinea Pig') {
+                guineapigs.push(name);
+            }
+        })
+        $('#info').html('The guinea pig names are: ' + guineapigs.join(' & '));
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-26</h3>
+    <h1>Loading a web page into a DIV</h1>
+    <div id='info3'>This sentence will be replaced</div>
+    <script>
+        $.post('../lecture7/urlpost.php', { url: 'amazon.com/gp/aw' }, function (data) {
+            $('#info3').html(data);
+        })
+    </script>
+    <br>
+    <br>
+    <h3>Example 22-27</h3>
+    <h1>Loading a web page into a DIV</h1>
+    <div id='info4'>This sentence will be replaced</div>
+    <script>
+        $.get('../lecture7/urlget.php?url=amazon.com/gp/aw', function (data) {
+            $('#info4').html(data);
+        })
+    </script>
+</body>
+
+</html>

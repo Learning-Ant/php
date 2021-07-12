@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Example 22-1</h3>
+    The jQuery library usese either the <code>$()</code>
+    or <code>jQuery()</code> function names.
+    <br>
+    <br>
+    <h3>Example 22-2</h3>
+    <blockquote>Powerful and flexible as JavaScript is, with a plethora of
+        built-in functions, it is still necessary to use additinal code for
+        simple thins that cannot be achieved natively or with CSS, such as
+        animations, event handling, and asynchronous communication.
+    </blockquote>
+    <div id='advert'>This is an ad</div>
+    <p>This is my <span class='new'>new</span> website</p>
+    <br>
+    <br>
+    <h3>Example 22-3</h3>
+    <button id='clickme'>Click Me</button>
+    <p id='result'>I am a paragraph</p>
+    <br>
+    <br>
+    <h3>Example 22-5</h3>
+    <h2>Click in and out of these fields</h2>
+    <input id='first'> <input> <input> <input>
+    <script>
+        // Example 22-1
+        $('code').css('border', '1px solid #aaa');
+
+        // Example 22-2
+        $('blockquote').css('background', 'lime');
+        $('#advert').css('border', '3px dashed red');
+        $('.new').css('text-decoration', 'underline');
+        $('blockquote, #advert, .new').css('font-weight', 'bold');
+
+        // Example 22-3
+        $('#clickme').click(function () {
+            $('#result').html('You clicked the button!');
+        })
+
+        // Example 22-5
+        $('#first').focus();
+        $('input').focus(function () {
+            $(this).css('background', '#ff0')
+        });
+        $('input').blur(function () {
+            $(this).css('background', '#aaa');
+        });
+    </script>
+</body>
+
+</html>
