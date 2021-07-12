@@ -4,7 +4,7 @@
 
     if (!$loggedin) die("</div></body></html>");
 
-    if (!$isset($_GET['view'])) {
+    if (isset($_GET['view'])) {
         $view = sanitizeString($_GET['view']);
 
         if ($view == $user) $name = "Your";

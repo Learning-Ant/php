@@ -9,16 +9,24 @@ if (isset($_POST['user'])) {
     if ($user == "" || $pass == "") {
         $error = 'Not all fields were entered';
     } else {
-        $result = queryMysql("SELECT user, pass FROM members WHERE user='$user' AND pass='$pass'");
-
-        if ($result->rowCount() == 0) {
-            $error = "Invalid login attempt";
-        } else {
-            $_SESSION['user'] = $user;
-            $_SESSION['pass'] = $pass;
-            die("<div class='center'> You are now logged in. Please 
-            <a data-transition='slide' href='members.php?view=$user&r=$randstr'>click here</a>to continue.</div></div></body</html>");
+        $result = queryMysql("SELECT user, pass FROM members WHERE user='$user'");
+        if ($row = $result->fetch()) {
+            if (password_verify($pass, $row['pass'])) {
+                $_SESSION['user'] = $user;
+                die("<div class='center'> You are now logged in. Please
+                <a data-transition='slide' href='members.php?view=$user&r=&randstr'>click here</a> to continu.</div></div></body></html>");
+            } else {
+                $error = "Invalid login attempt";
+            }
         }
+        // if ($result->rowCount() == 0) {
+        //     $error = "Invalid login attempt";
+        // } else {
+        //     $_SESSION['user'] = $user;
+        //     $_SESSION['pass'] = $pass;
+        //     die("<div class='center'> You are now logged in. Please 
+        //     <a data-transition='slide' href='members.php?view=$user&r=$randstr'>click here</a>to continue.</div></div></body</html>");
+        // }
     }
 }
 

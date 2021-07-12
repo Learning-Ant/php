@@ -3,15 +3,16 @@ require_once 'header.php';
 
 echo <<<_END
 <script>
-    function checkUse(user){
+    function checkUser(user){
         if (user.value == '') {
+
             $('#used').html('&nbsp;');
             return
         }
 
         $.post (
-            'checkuse.php',
-            {user : user.value},
+            'checkuser.php',
+            { "user" : user.value},
             function(data){
                 $('#used').html(data);
             }
@@ -26,7 +27,8 @@ if (isset($_SESSION['user'])) destroySession();
 
 if (isset($_POST['user'])) {
     $user = sanitizeString($_POST['user']);
-    $pass = sanitizeString($_POST['post']);
+    $pass = passHash(sanitizeString($_POST['pass']));
+    // echo "<script>console.log('$user, $pass," . $_POST['pass'] . "')</script>";
 
     if ($user == "" || $pass == "") {
         $error = 'Not all fields were entered<br><br>';

@@ -64,5 +64,10 @@ function showProfile($user)
 
     echo "<p>Nothing to see here, yet<p><br>";
 }
+
+function passHash($passFromPost)
+{
+    return password_hash($passFromPost, PASSWORD_BCRYPT);
+}
 ?>
 <!--  -->

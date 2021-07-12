@@ -14,7 +14,7 @@
     createTable(
         'members',
         'user VARCHAR(16),
-        pass VARCHAR(16),
+        pass VARCHAR(60),
         INDEX(user(6))'
     );
 
