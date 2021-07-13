@@ -22,6 +22,24 @@ img {
     box-shadow : 2px 2px 2px #888;
 }
 
+form {
+    margin : 0 auto;
+    padding : 10px 20px;
+    width : 800px;
+    border : 1px solid black;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    form {
+        margin : 0 auto;
+        padding : 5px 10px;
+        width : 95%;
+        border : 1px solid black;
+        border-radius: 10px;
+    }
+}
+
 .username {
     text-align : center;
     background : #eb8;

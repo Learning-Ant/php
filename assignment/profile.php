@@ -1,5 +1,43 @@
 <?php
 require_once 'header.php';
+echo "<script src='https://cdn.jsdelivr.net/gh/jhuckaby/webcamjs/webcam.min.js'></script>";
+echo <<<_WEBCAM
+<script>
+setTimeout(() => {
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+    Webcam.attach('#webcam_profile');
+}, 100);
+
+function take_snapshot() {
+    Webcam.snap(function(data) {
+        $('#results').html('<img src="' + data + '" style="width: 320px; height: 240px;"/>');
+        $('#results img').css({
+            'width': '320px',
+            'height': '240px'
+        })
+    });
+}
+</script>
+_WEBCAM;
+// echo "<script src='https://cdn.jsdelivr.net/gh/infusion/jQuery-webcam/jquery.webcam.min.js'></script>";
+// echo <<<_WEBCAM
+// <script>
+//     $(function() {
+//         $('#webcam_profile').webcam({
+//             width: 320,
+//             height: 240,
+//             mode: "callback",
+
+//         })
+//     })    
+// </script>
+// _WEBCAM;
 
 if (!$loggedin) die("</div></body></html>");
 echo "<h3>Your Profile</h3>";
@@ -23,7 +61,8 @@ if (isset($_POST['text'])) {
 $text = stripslashes(preg_replace('/\s\s+/', ' ', $text));
 
 if (isset($_FILES['image']['name'])) {
-    $saveto = "$user.jpg";
+    $dest_dir = "./assets/member_profile_imgs/";
+    $saveto = $dest_dir . "$user.jpg";
     move_uploaded_file($_FILES['image']['tmp_name'], $saveto);
     $typeok = TRUE;
 
@@ -72,15 +111,20 @@ if (isset($_FILES['image']['name'])) {
 showProfile($user);
 
 echo <<<_END
-            <form data-ajaz='false' method='post' action='profile.php?r=$randstr' enctype='multipart/form-data'>
+            <form data-ajax='false' method='post' action='profile.php?r=$randstr' enctype='multipart/form-data'>
                 <h3>Enter or edit your details and/or upload an image</h3>
                 <textarea name='text'>$text</textarea><br>
-                Image: <input type='file' name='image' size='14'>
+                Image: <input type='file' name='image'>
                 <input type='submit' value='Save Profile'>
+                <div id="webcam_profile"></div>
+                <input type="button" value="Take Snapshot" onClick="take_snapshot()" />
+                <div id="results"></div>
             </form>
         </div> <br>
     </body>
 </html>
 _END;
 ?>
+
+
 <!--  -->

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        // Example 24-3
+        class One extends React.Component {
+            render() {
+                return <p>By Jeeves, it works!</p>;
+            }
+        }
+
+        class Two extends React.Component {
+            render() {
+                return <p>And this, by Jove!</p>
+            }
+        }
+
+        doRender(<One />, 'div1');
+        doRender(<Two />, 'div2');
+
+        function doRender(elem, dest) {
+            ReactDOM.render(elem, document.getElementById(dest));
+        }
+
+        // Example 24-4
+        function Welcome(props) {
+            return <h1>Hello, {props.name}</h1>;
+        }
+
+        doRender(<Welcome name='Robin' />, 'hello');
+
+        // Example 24-5
+        class Clock extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Data()
+                };
+            }
+
+            componentDidMount() {
+                this.timerID = setInterval(() => this.tick(), 1000);
+            }
+            componentWillUnmount() {
+                clearInterval(this.timerID);
+            }
+
+            tick() {
+                this.setState({ date: new Date() });
+            }
+
+            render() {
+                return <span> {this.state.date.toLocaleTimeString()} </span>;
+            }
+        }
+
+        doRender(<Clock />, 'the_time');
+
+        // Example 24-6
+        class Toggle extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    isVisible: true
+                };
+                this.handleClick = this.handleClick.bind(this);
+            }
+
+            handleClick() {
+                this.setState(state => ({ isVisible: !state.isVisible }))
+            }
+
+            render() {
+                const show = this.state.isVisible;
+
+                return (
+                    <div>
+                        <button onClick={this.handleClick}>
+                            {show ? 'HIDE' : 'DISPLAY'}
+                        </button>
+                        <p>
+                            {show ? 'Here is some text' : ''}
+                        </p>
+                    </div>
+                );
+            }
+        }
+
+        doRender(<Toggle />, 'display')
+
+        // Example 24-7
+        class Setup extends React.Component {
+            constructor(props) {
+                super(props);
+                this.highScore = 90;
+                this.currentScore = 100;
+            }
+
+            render() {
+                return (
+                    <div>
+                        {
+                            this.currentScore > this.highScore && <h1>New High Score</h1>
+                        }
+                    </div>
+                );
+            }
+        }
+        doRender(<Setup />, 'display2')
+
+        // Example 24-8
+        const cats = ['lion', 'tiger', 'cheetah', 'lynx'];
+        const listofCats = cats.map((cat) => <li>{cat}</li>);
+
+        doRender(<ul>{listofCats}</ul>, 'display3');
+
+        // Example 24-9
+        var uniqueId = 0;
+        const cats2 = ['lion', 'tiger', 'cheetah', 'lynx'];
+        const listofCats2 = cats2.map((cat) => <li key={uniqueId++}>{cat}</li>);
+
+        doRender(<ul>{listofcats2}</ul>, 'display4');
+
+        // Example 24-10
+        class GetName extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: '' };
+                this.onChange = this.onChange.bind(this);
+                this.onSubmit = this.onSubmit.bind(this);
+            }
+
+            onChange(event) {
+                this.setState({ value: event.target.value });
+            }
+
+            onSubmit(event) {
+                alert('You submitted: ' + this.state.value);
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.onSubmit}>
+                        <label>
+                            Name:
+                            <input type="text" value={this.state.value} onChange={this.onChange} />
+                        </label>
+                        <input type="submit" />
+                    </form>
+                );
+            }
+        }
+        doRender(<GetName />, 'display5');
+
+        // Example 24-11
+        class GetText extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: '' };
+                this.onChange = this.onChange.bind(this);
+                this.onSubmit = this.onSubmit.bind(this);
+            }
+
+            onChange(event) {
+                this.setState({ value: evenet.target.value });
+            }
+
+            onSubmit(event) {
+                alert('You submitted: ' + this.state.value);
+                event.preventDefault();
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.onSubmit}>
+                        <label>
+                            Enter some text:<br />
+                            <textarea reow='5' cols='40' value={this.state.value} onChange={this.onChange} />
+                        </label><br />
+                        <input type="submit" />
+                    </form>
+                );
+            }
+        }
+
+        doRender(<GetText />, 'display6')
+
+        // 24-12
+        class GetCountry extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { value: 'USA' };
+                this.onChange = this.onChange.bind(this);
+                this.onSubmit = this.onSubmit.bind(this);
+            }
+
+            onChange(e) {
+                this.setState({ value: e.target.value });
+            }
+
+            onSubmit(e) {
+                alert('You selected: ' + this.state.value);
+                e.preventDefault();
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.onSubmit}>
+                        <label>
+                            Select a country:
+                            <select value={this.state.value} onChange={this.onChange}>
+                                <option value="Australia">Australia</option>
+                                <option value="Canada">Canada</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="USA">United States</option>
+                            </select>
+                        </label>
+                    </form>
+                )
+            }
+        }
+        doRender(<GetCountry />, 'display7');
+    </script>
+</head>
+
+<body>
+    <div id="div1" style='font-family:monospace'></div>
+    <div id="div2" style='font-family:monospace'></div>
+    <div id="hello" style='font-family:monospace'></div>
+    <p style="font-family:monospace">The time is: <span id="the_time"></span></p>
+    <div id="display" style='font-family:monospace'></div>
+    <div id="display2" style='font-family:monospace'></div>
+    <div id="display3" style='font-family:monospace'></div>
+    <div id="display4" style='font-family:monospace'></div>
+    <div id="display5" style='font-family:monospace'></div>
+    <div id="display6" style='font-family:monospace'></div>
+    <div id="display7" style='font-family:monospace'></div>
+</body>
+
+</html>

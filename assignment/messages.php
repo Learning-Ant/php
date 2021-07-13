@@ -29,6 +29,7 @@ if ($view != "") {
 
     echo "<h3>$name1 Messages</h3>";
     showProfile($view);
+    echo "<script>console.log('$view')</script>";
 
     echo <<<_END
     <form method='post' action='messages.php?view=$view&r=&randstr'>
@@ -39,7 +40,7 @@ if ($view != "") {
             <input type='radio' name='pm' id='private' value='1'>
             <label for="private">Private</label>
         </fieldset>
-        <textarea name='text'></textarea>
+        <textarea name='text' rows='7'></textarea>
         <input data-transition='slide' type='submit' value='Post Message' />
     </form><br>
 _END;
@@ -77,7 +78,7 @@ if (!$num) {
     echo "<br><span class='info'>No messages yet</span><br><br>";
 }
 
-echo "<br><a data-role='button' href='messages.php?view=$view&r=$randstr'>Refresh messages</a>";
+echo "<br><a data-role='button' data-inline='true' data-icon='refresh' href='messages.php?view=$view&r=$randstr'>Refresh messages</a>";
 ?>
 </div><br>
 </body>

@@ -52,17 +52,19 @@ function sanitizeString($var)
 function showProfile($user)
 {
     global $pdo;
-    if (file_exists("$user.jpg")) {
-        echo "<img src='$user.jpg' style='float:left;'>";
+    if (file_exists("./assets/member_profile_imgs/$user.jpg")) {
+        echo "<img src='./assets/member_profile_imgs/$user.jpg' style='float:left;'>";
     }
 
     $result = $pdo->query("SELECT * FROM profiles WHERE user='$user'");
 
-    while ($row = $result->fetch()) {
-        die(stripslashes($row['text']) . "<br style='clear:left;'><br>");
+    if (!$result->rowCount()) {
+        echo "<p>Nothing to see here, yet<p><br>";
+    } else {
+        while ($row = $result->fetch()) {
+            echo stripslashes($row['text']) . "<br style='clear:left;'><br>";
+        }
     }
-
-    echo "<p>Nothing to see here, yet<p><br>";
 }
 
 function passHash($passFromPost)
