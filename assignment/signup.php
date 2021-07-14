@@ -5,19 +5,35 @@ echo <<<_END
 <script>
     function checkUser(user){
         if (user.value == '') {
-
             $('#used').html('&nbsp;');
             return
         }
-
-        $.post (
-            'checkuser.php',
-            { "user" : user.value},
-            function(data){
-                $('#used').html(data);
+        $.ajax ({
+            type: "POST",
+            url: "checkuser.php",
+            data: {"user": user.value},
+            success: function(res) {
+                $('#used').html(res);
+            },
+            error: function() {
+                alert("Something is wrong. Please re-try");
             }
-        )
+        })
     }
+    function checkPw(pw){
+        $.ajax({
+            type: "post",
+            url: "checkpw.php",
+            data: {"pw": pw.value},
+            success: function(res) {
+                $('#pwchk').html(res);
+            },
+            error: function() {
+                alert("Something is wrong. Please re-try");
+            }
+        })
+    }
+
 </script>
 _END;
 
@@ -28,7 +44,7 @@ if (isset($_SESSION['user'])) destroySession();
 if (isset($_POST['user'])) {
     $user = sanitizeString($_POST['user']);
     $pass = passHash(sanitizeString($_POST['pass']));
-    // echo "<script>console.log('$user, $pass," . $_POST['pass'] . "')</script>";
+    echo "<script>console.log('$user, $pass," . $_POST['pass'] . "')</script>";
 
     if ($user == "" || $pass == "") {
         $error = 'Not all fields were entered<br><br>';
@@ -52,13 +68,15 @@ echo <<<_END
                 <div>
                 <div data-role='fieldcontain'>
                     <label>Username</label>
-                    <input type='text' maxlength='16' name='user' value='$user' onBlur='checkUser(this)'/>
+                    <input type='text' maxlength='16' name='user' value='$user' onkeyup='checkUser(this)'/>
                     <label></label>
-                    <div id='user'>&nbsp;</div>
-                </div>
-                <div data-role='fieldcontain'>
+                    <div id='used'>&nbsp;</div>
+                    </div>
+                    <div data-role='fieldcontain'>
                     <label>Password</label>
-                    <input type='text' maxlength='16' name='pass' value='$pass' />
+                    <input type='password' maxlength='16' name='pass' value='$pass' onkeyup='checkPw(this)' />
+                    <label></label>
+                    <div id='pwchk'>&nbsp;</div>
                 </div>
                 <div data-role='fieldcontain'>
                     <label></label>

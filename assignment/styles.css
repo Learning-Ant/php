@@ -68,7 +68,7 @@ form {
 }
 
 .available {
-    color : green;
+    color : rgb(37, 223, 37);
 }
 
 .whisper {
@@ -77,24 +77,28 @@ form {
 }
 
 #logo {
-    font-family : Georgia;
+    font-family: sans-serif;
     font-weight : bold;
-    font-style : italic;
     font-size : 97px;
-    color : red;
+    color : lightgreen;
+    margin-bottom: 20px;
 }
 
-#robin {
+#logo-img {
+    height: 70px;
+    width : 75px;
     position : relative;
     border : 0px;
-    margin-left : -6px;
-    margin-right : 0px;
+    margin-left : -4px;
+    margin-right : -4px;
     top : 17px;
     -moz-box-shadow : 0px 0px 0px;
     -webkit-box-shadow : 0px 0px 0px;
     box-shadow : 0px 0px 0px;
 }
 
-#used {
+#used, #pwchk {
     margin-top : 50px;
+    padding: 10px;
 }
+

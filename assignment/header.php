@@ -34,12 +34,12 @@ if (isset($_SESSION['user'])) {
 } else $loggedin = FALSE;
 
 echo <<<_MAIN
-        <title>Robin's Nest: $userstr</title>
+        <title>Seogn's Net: $userstr</title>
     </head>
     <body>
         <div data-role='page'>
             <div data-role='header'>
-                <div id='logo' class='center'>R<img id='robin' src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/29/robin.gif'>bin's Nest</div>
+                <div id='logo' class='center'>S<img id='logo-img' src='./assets/img/My_Character.png'>eng's Net</div>
             <div class='username'>$userstr</div>
         </div>
         <div data-role='content'>

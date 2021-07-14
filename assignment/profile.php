@@ -16,28 +16,11 @@ setTimeout(() => {
 
 function take_snapshot() {
     Webcam.snap(function(data) {
-        $('#results').html('<img src="' + data + '" style="width: 320px; height: 240px;"/>');
-        $('#results img').css({
-            'width': '320px',
-            'height': '240px'
-        })
+        $('#results').html('<img src="' + data + '" style="width: 320px; height: 240px; margin: 0 auto;"/>');
     });
 }
 </script>
 _WEBCAM;
-// echo "<script src='https://cdn.jsdelivr.net/gh/infusion/jQuery-webcam/jquery.webcam.min.js'></script>";
-// echo <<<_WEBCAM
-// <script>
-//     $(function() {
-//         $('#webcam_profile').webcam({
-//             width: 320,
-//             height: 240,
-//             mode: "callback",
-
-//         })
-//     })    
-// </script>
-// _WEBCAM;
 
 if (!$loggedin) die("</div></body></html>");
 echo "<h3>Your Profile</h3>";
@@ -116,9 +99,9 @@ echo <<<_END
                 <textarea name='text'>$text</textarea><br>
                 Image: <input type='file' name='image'>
                 <input type='submit' value='Save Profile'>
-                <div id="webcam_profile"></div>
+                <div id="webcam_profile" style='margin: 0 auto;' ></div>
                 <input type="button" value="Take Snapshot" onClick="take_snapshot()" />
-                <div id="results"></div>
+                <div id="results" style='width:320px; height:240px; margin: 0 auto;' ></div>
             </form>
         </div> <br>
     </body>

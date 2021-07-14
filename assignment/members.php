@@ -24,7 +24,7 @@
         if (!$result->rowCount()) {
             queryMysql("INSERT INTO friends VALUES('$add', '$user')");
         }
-    } elseif (!isset($_GET['remove'])) {
+    } elseif (isset($_GET['remove'])) {
         $remove = sanitizeString($_GET['remove']);
         queryMysql("DELETE FROM friends WHERE user='$remove' AND friend='$user'");
     }
