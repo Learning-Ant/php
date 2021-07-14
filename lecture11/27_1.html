@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='../lecture8/21_OSC.js'></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Example 27-1</h2>
+    <audio controls>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.m4a' type='audio/aac'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.mp3' type='audio/mp3'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.ogg' type='audio/ogg'>
+    </audio>
+
+    <h2>Example 27-2</h2>
+    <audio id='myaudio'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.m4a' type='audio/aac'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.mp3' type='audio/mp3'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/audio.ogg' type='audio/ogg'>
+    </audio>
+
+    <button onclick='playaudio()'>Play Audio</button>
+    <button onclick='pauseaudio()'>Pause Audio</button>
+
+    <script>
+        function playaudio() {
+            O('myaudio').play();
+        }
+        function pauseaudio() {
+            O('myaudio').pause();
+        }
+    </script>
+    <h2>Example 27-3</h2>
+    <video width='560' height='320' controls>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.mp4' type='video/mp4'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.webm' type='video/webm'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.ogv' type='video/ogg'>
+    </video>
+
+    <h2>Example 27-4</h2>
+    <video id='myvideo' width='560' height='320'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.mp4' type='video/mp4'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.webm' type='video/webm'>
+        <source src='https://raw.githubusercontent.com/RobinNixon/lpmj6/master/27/movie.ogv' type='video/ogg'>
+    </video><br>
+
+    <button onclick='playvideo()'>Play Video</button>
+    <button onclick='pausevideo()'>Pause Video</button>
+
+    <script>
+        function playvideo() {
+            O('myvideo').play();
+        }
+        function pausevideo() {
+            O('myvideo').pause();
+        }
+    </script>
+</body>
+
+</html>

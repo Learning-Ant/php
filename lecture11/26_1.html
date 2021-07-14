@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../lecture8/21_OSC.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Example 26-1</h2>
+    <canvas id='mycanvas' width='320' height='240'>
+        This is a canvas element given the ID <i>mycanvas</i>
+        This text is only visible in non-HTML5 browsers
+    </canvas>
+
+    <h2>Example 26-2</h2>
+    <img id='myimage' />
+
+    <h2>Example 26-3</h2>
+    <canvas id='mycanvas2' width='640' height='240'></canvas>
+
+    <h2>Example 26-4</h2>
+    <canvas id='mycanvas3' width='640' height='240'></canvas>
+
+    <h2>Example 26-5</h2>
+    <canvas id='mycanvas4' width='640' height='240'></canvas>
+
+    <h2>Example 26-6</h2>
+    <canvas id='mycanvas5' width='640' height='240'></canvas>
+
+    <h2>Example 26-7</h2>
+    <canvas id='mycanvas6' width='640' height='240'></canvas>
+
+    <h2>Example 26-8</h2>
+    <canvas id='mycanvas7' width='640' height='240'></canvas>
+
+    <h2>Example 26-9</h2>
+    <canvas id='mycanvas8' width='640' height='240'></canvas>
+
+    <h2>Example 26-10</h2>
+    <canvas id='mycanvas9' width='640' height='240'></canvas>
+
+    <h2>Example 26-11</h2>
+    <canvas id='mycanvas10' width='640' height='240'></canvas>
+
+    <script>
+        // Example 26-1
+        canvas = O('mycanvas');
+        context = canvas.getContext('2d');
+        context.fillStyle = 'red';
+        S(canvas).border = '1px solid black';
+
+        context.beginPath();
+        context.moveTo(160, 120);
+        context.arc(160, 120, 70, 0, Math.PI * 2, false);
+        context.closePath();
+        context.fill();
+
+        // Example 26-2
+        S('myimage').border = '1px solid black';
+        O('myimage').src = canvas.toDataURL();
+
+        // Example 26-3
+        canvas = O('mycanvas2');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+        context.fillStyle = 'blue'
+        context.strokeStyle = 'green';
+
+        context.fillRect(20, 20, 600, 200);
+        context.clearRect(40, 40, 560, 160);
+        context.strokeRect(60, 60, 520, 120);
+
+        // Example 26-4
+        canvas = O('mycanvas3');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+        context.fillStyle = 'blue'
+        context.strokeStyle = 'green';
+
+        context.fillRect(20, 20, 600, 200);
+        context.clearRect(40, 40, 560, 160);
+        context.strokeRect(60, 60, 520, 120);
+
+        gradient = context.createLinearGradient(0, 80, 640, 80);
+        gradient.addColorStop(0, 'white');
+        gradient.addColorStop(1, 'black');
+        context.fillStyle = gradient;
+        context.fillRect(80, 80, 480, 80);
+
+        // Example 26-5
+        canvas = O('mycanvas4');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+
+        gradient = context.createLinearGradient(0, 0, 160, 0);
+        gradient.addColorStop(0, 'white');
+        gradient.addColorStop(1, 'black');
+        context.fillStyle = gradient;
+        context.fillRect(20, 20, 135, 200);
+
+        gradient = context.createLinearGradient(0, 0, 0, 240);
+        gradient.addColorStop(0, 'yellow');
+        gradient.addColorStop(1, 'red');
+        context.fillStyle = gradient;
+        context.fillRect(175, 20, 135, 200);
+
+        gradient = context.createLinearGradient(320, 0, 480, 240);
+        gradient.addColorStop(0, 'green');
+        gradient.addColorStop(1, 'purple');
+        context.fillStyle = gradient;
+        context.fillRect(330, 20, 135, 200);
+
+        gradient = context.createLinearGradient(480, 240, 640, 0);
+        gradient.addColorStop(0, 'orange');
+        gradient.addColorStop(1, 'magenta');
+        context.fillStyle = gradient;
+        context.fillRect(485, 20, 135, 200);
+
+        // Example 26-6
+        canvas = O('mycanvas5');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+
+        gradient = context.createLinearGradient(0, 0, 600, 0);
+        gradient.addColorStop(0.00, 'red');
+        gradient.addColorStop(0.14, 'orange');
+        gradient.addColorStop(0.28, 'yellow');
+        gradient.addColorStop(0.42, 'green');
+        gradient.addColorStop(0.56, 'blue');
+        gradient.addColorStop(0.70, 'indigo');
+        gradient.addColorStop(0.84, 'violet');
+        context.fillStyle = gradient;
+        context.fillRect(20, 20, 600, 200);
+
+        // Example 26-7
+        canvas = O('mycanvas6');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+
+        gradient = context.createRadialGradient(320, 120, 0, 320, 120, 320)
+        gradient.addColorStop(0.00, 'red');
+        gradient.addColorStop(0.14, 'orange');
+        gradient.addColorStop(0.28, 'yellow');
+        gradient.addColorStop(0.42, 'green');
+        gradient.addColorStop(0.56, 'blue');
+        gradient.addColorStop(0.70, 'indigo');
+        gradient.addColorStop(0.84, 'violet');
+        context.fillStyle = gradient;
+        context.fillRect(20, 20, 600, 200);
+
+        // Example 26-8
+        canvas = O('mycanvas7');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+
+        gradient = context.createRadialGradient(0, 120, 0, 480, 120, 480)
+        gradient.addColorStop(0.00, 'red');
+        gradient.addColorStop(0.14, 'orange');
+        gradient.addColorStop(0.28, 'yellow');
+        gradient.addColorStop(0.42, 'green');
+        gradient.addColorStop(0.56, 'blue');
+        gradient.addColorStop(0.70, 'indigo');
+        gradient.addColorStop(0.84, 'violet');
+        context.fillStyle = gradient;
+        context.fillRect(20, 20, 600, 200);
+
+        // Example 26-9
+        canvas = O('mycanvas8');
+        context = canvas.getContext('2d');
+        S(canvas).background = 'lightblue';
+
+        image = new Image();
+        image.src = 'https://raw.githubusercontent.com/RobinNixon/lpmj6/master/26/image.png';
+
+        pattern = context.createPattern(image, 'repeat');
+        context.fillStyle = pattern;
+        context.fillRect(20, 20, 600, 200);
+
+        // Example 26-10
+        canvas = O('mycanvas9');
+        context = canvas.getContext('2d');
+        context.font = 'bold 140px Times';
+        context.textBaseline = 'top';
+        context.strokeText('WickerpediA', 0, 0);
+
+        // Example 26-11
+        canvas = O('mycanvas10');
+        context = canvas.getContext('2d');
+        image.src = 'https://raw.githubusercontent.com/RobinNixon/lpmj6/master/26/wicker.jpg';
+
+        pattern = context.createPattern(image, 'repeat');
+        context.fillStyle = pattern;
+        context.font = 'bold 140px Times';
+        context.textBaseline = 'top';
+        context.fillText('WickerpediA', 0, 0);
+        context.strokeText('WickerpediA', 0, 0);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='../lecture8/21_OSC.js'></script>
+    <title>Document</title>
+    <style>
+        #output {
+            font-family: "Courier New";
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='output'>Received messages will display here</div>
+    <script>
+        window.onmessage = function (event) {
+            O('output').innerHTML =
+                '<b>Origin:</b> ' + event.origin + '<br>' +
+                '<b>Source:</b> ' + event.source + '<br>' +
+                '<b>Data:</b>   ' + event.data;
+        }
+    </script>
+</body>
+
+</html>
