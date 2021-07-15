@@ -15,6 +15,7 @@ echo <<<_INIT
         <meta name='viewport' content='width=device-width, initial-scale=1'>
         <link rel='stylesheet' href='styles.css'>
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
         <script src='javascript.js'></script>
         <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>

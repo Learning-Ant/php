@@ -34,6 +34,18 @@ echo <<<_END
         })
     }
 
+    function submitchk() {
+        let regExpId = new RegExp( '^[0-9a-zA-Z]{5,16}' );
+        let regExpPw = new RegExp( '^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#%&_])[A-Za-z0-9!@#%&_]{5,16}$');
+        if(regExpId.test($('input[name="user"]').val()) && regExpPw.test($('input[name="pass"]').val())) {
+            return true;
+        }
+        alert('Please Check Id & Password');
+        $('input[name="user"]').focus();
+        return false;
+    }
+
+
 </script>
 _END;
 
@@ -44,7 +56,6 @@ if (isset($_SESSION['user'])) destroySession();
 if (isset($_POST['user'])) {
     $user = sanitizeString($_POST['user']);
     $pass = passHash(sanitizeString($_POST['pass']));
-    echo "<script>console.log('$user, $pass," . $_POST['pass'] . "')</script>";
 
     if ($user == "" || $pass == "") {
         $error = 'Not all fields were entered<br><br>';
@@ -61,7 +72,7 @@ if (isset($_POST['user'])) {
 }
 
 echo <<<_END
-            <form method='post' action='signup.php?r=$randstr'>$error
+            <form method='post' action='signup.php?r=$randstr' onsubmit='return submitchk()'>$error
                 <div data-role='fieldcontain'>
                     <label></label>
                     Please enter your details to sign up
