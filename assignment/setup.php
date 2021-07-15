@@ -34,6 +34,7 @@
         'friends',
         'user VARCHAR(16),
         friend VARCHAR(16),
+        time DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
         INDEX(user(6)),
         INDEX(friend(6))'
     );

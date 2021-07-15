@@ -1,25 +1,9 @@
 <?php
 require_once 'header.php';
-echo "<script src='https://cdn.jsdelivr.net/gh/jhuckaby/webcamjs/webcam.min.js'></script>";
 echo <<<_WEBCAM
-<script>
-setTimeout(() => {
-    Webcam.set({
-        width: 320,
-        height: 240,
-        image_format: 'jpeg',
-        jpeg_quality: 90
-    });
+<script src='https://cdn.jsdelivr.net/gh/jhuckaby/webcamjs/webcam.min.js'></script>
+<script src='webcam.js'></script>
 
-    Webcam.attach('#webcam_profile');
-}, 100);
-
-function take_snapshot() {
-    Webcam.snap(function(data) {
-        $('#results').html('<img src="' + data + '" style="width: 320px; height: 240px; margin: 0 auto;"/>');
-    });
-}
-</script>
 _WEBCAM;
 
 if (!$loggedin) die("</div></body></html>");
@@ -99,10 +83,16 @@ echo <<<_END
                 <textarea name='text'>$text</textarea><br>
                 Image: <input type='file' name='image'>
                 <input type='submit' value='Save Profile'>
-                <div id="webcam_profile" style='margin: 0 auto;' ></div>
-                <input type="button" value="Take Snapshot" onClick="take_snapshot()" />
-                <div id="results" style='width:320px; height:240px; margin: 0 auto;' ></div>
             </form>
+            <div id='snap-wrap'>
+                <div id='cam'></div>
+                <div id='btn-wrap'>
+                    <a data-role='button' data-inline='true' onClick='configure()'>Configure</a>
+                    <a data-role='button' data-inline='true' onClick='take_snapshot()'>Take Snapshot</a>
+                    <a data-role='button' data-inline='true' onClick='saveSnap()'>Save Snapshot</a>
+                </div>
+                <div id='results'></div>
+            </div>
         </div> <br>
     </body>
 </html>

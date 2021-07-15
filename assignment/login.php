@@ -11,6 +11,7 @@ if (isset($_POST['user'])) {
     } else {
         $result = queryMysql("SELECT user, pass FROM members WHERE user='$user'");
         if ($row = $result->fetch()) {
+            // 암호화되어 table에 저장된 암호와 비교
             if (password_verify($pass, $row['pass'])) {
                 $_SESSION['user'] = $user;
                 die("<div class='center'> You are now logged in. Please
@@ -19,14 +20,6 @@ if (isset($_POST['user'])) {
                 $error = "Invalid login attempt";
             }
         }
-        // if ($result->rowCount() == 0) {
-        //     $error = "Invalid login attempt";
-        // } else {
-        //     $_SESSION['user'] = $user;
-        //     $_SESSION['pass'] = $pass;
-        //     die("<div class='center'> You are now logged in. Please 
-        //     <a data-transition='slide' href='members.php?view=$user&r=$randstr'>click here</a>to continue.</div></div></body</html>");
-        // }
     }
 }
 

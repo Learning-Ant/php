@@ -21,25 +21,39 @@ if ($view == $user) {
 // show Viewer's profile
 showProfile($view);
 
-$followers = array();
-$following = array();
+$followers = array(
+    'user' => array(),
+    'time' => array()
+);
+$following = array(
+    'user' => array(),
+    'time' => array()
+);
 
-$result = queryMysql("SELECT * FROM friends WHERE user='$view'");
+$result = queryMysql("SELECT * FROM friends WHERE user='$view' ORDER BY user");
 
 while ($row = $result->fetch()) {
-    $followers[$j] = $row['friend'];
+    array_push($followers['user'], $row['friend']);
+    array_push($followers['time'], $row['time']);
 }
 
-$result = queryMysql("SELECT * FROM friends WHERE friend='$view'");
+$result = queryMysql("SELECT * FROM friends WHERE friend='$view' ORDER BY user");
 
 while ($row = $result->fetch()) {
-    $following[$j] = $row['user'];
+    array_push($following['user'], $row['user']);
+    array_push($following['time'], $row['time']);
 }
 
-$mutual = array_intersect($followers, $following);
-$followers = array_diff($followers, $mutual);
-$following = array_diff($following, $mutual);
+// relation distinction
+$mutual = array_intersect($followers['user'], $following['user']);
+$followers['user'] = array_diff($followers['user'], $mutual);
+$following['user'] = array_diff($following['user'], $mutual);
 $friends = FALSE;
+
+// codes for debuging
+// print_r($mutual);
+// print_r($followers);
+// print_r($following);
 
 echo "<br>";
 
@@ -52,24 +66,41 @@ if (sizeof($mutual)) {
     $friends = TRUE;
 }
 
-if (sizeof($followers)) {
+if (sizeof($followers['user'])) {
     echo "<span class='subhead'>$name2 followers</span><ul>";
-    foreach ($followers as $friend) {
-        echo "<li><a data-transition='slide' href='members.php?view=$friend&r=$randstr'>$friend</a>";
+
+    for ($i = 0; $i < sizeof($followers['user']); ++$i) {
+        echo "<li><a data-transition='slide' href='members.php?view=$firend&r=$randstr'>" . $followers['user'][$i] . "</a> since " . substr($followers['time'][$i], 0, 11);
     }
+
     echo "</ul>";
+
+    // foreach ($followers['user'] as $friend) {
+    //     echo "<li><a data-transition='slide' href='members.php?view=$friend&r=$randstr'>$friend </a>";
+    // }
+    // echo "</ul>";
+
     $friends = TRUE;
 }
 
-if (sizeof($following)) {
+if (sizeof($following['user'])) {
     echo "<span class='subhead'>$name3 following</span><ul>";
-    foreach ($following as $friend) {
-        echo "<li><a data-transition='slide' href='members.php?view=$friend&r=$randstr'>$friend</a>";
+
+    for ($i = 0; $i < sizeof($following['user']); ++$i) {
+        echo "<li><a data-transition='slide' href='members.php?view=$firend&r=$randstr'>" . $following['user'][$i] . "</a> since " . substr($following['time'][$i], 0, 11);
     }
+
     echo "</ul>";
+
+    // foreach ($following['user'] as $friend) {
+    //     echo "<li><a data-transition='slide' href='members.php?view=$friend&r=$randstr'>$friend</a>";
+    // }
+    // echo "</ul>";
+
     $friends = TRUE;
 }
 
+// don't have friends
 if (!$friends) echo "<br>You don't have any friends yet.";
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$data = 'soengnet';
+$data = 'seongnet';
 $user = 'jspark';
 $pass = '1111';
 $chars = 'utf8mb4';
@@ -67,6 +67,7 @@ function showProfile($user)
     }
 }
 
+// encryption password
 function passHash($passFromPost)
 {
     return password_hash($passFromPost, PASSWORD_BCRYPT);

@@ -39,7 +39,7 @@ echo <<<_MAIN
     <body>
         <div data-role='page'>
             <div data-role='header'>
-                <div id='logo' class='center'>S<img id='logo-img' src='./assets/img/My_Character.png'>eng's Net</div>
+                <div id='logo' class='center'>Se<img id='logo-img' src='./assets/img/My_Character.png'>ng's Net</div>
             <div class='username'>$userstr</div>
         </div>
         <div data-role='content'>
