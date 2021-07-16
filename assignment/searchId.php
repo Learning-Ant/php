@@ -15,6 +15,7 @@ if (isset($_GET['search'])) {
     $search_id = sanitizeString($_GET['search']);
     $result = queryMysql("SELECT user FROM members WHERE user LIKE '%$search_id%' ORDER BY user");
     $str = '';
+    if (!$result->rowCount()) die("<li>검색결과가 없습니다</li>");
 
     while ($row = $result->fetch()) {
         if ($row['user'] == $user) continue;
