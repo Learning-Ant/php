@@ -13,21 +13,22 @@
   <script>
     let i = 0;
     if(typeof(EventSource) !== "undefined") {
-      let source = new EventSource("/test_sse/sse.php");
+      let source = new EventSource("../send_res/send_res.php");
       source.onmessage = function(event) {
         console.log(event.data);
-        $('#result').append(event.data + '<br/>');
+        console.log(event.id)
+        $('#result').append(event.id + ' : ' + event.data + '<br/>');
         i++;
         console.log(i);
-        if(i>5) {
-          source.close();
-        }
+        // if(i>5) {
+        //   source.close();
+        // }
       }
 
-      if(i>10) {
-        console.log(i);
-        source.close();
-      }
+      // if(i>10) {
+      //   console.log(i);
+      //   source.close();
+      // }
     }
   </script>
 </body>
